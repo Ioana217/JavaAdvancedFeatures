@@ -41,5 +41,6 @@ public class Main {
         pizza.addIngredient("onions");
 //        pizza.setIngredients(new String[]{"dough", "salami", "onions"});
         pizza.mixIngredients();
+        System.out.println("Surprise!!!!");
     }
 }
