@@ -2,12 +2,13 @@ import recap.Pizza;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
@@ -81,6 +82,7 @@ public class Main {
 
         names.remove("Alexandra");
         System.out.println(names.isEmpty());
+        System.out.println(names.contains("Lucinia"));
         for (String name : names) {
             System.out.println(name);
         }
@@ -105,17 +107,17 @@ public class Main {
 
         System.out.println(names.get(names.indexOf("Sorin")));
 
-        Person person1 = new Person();
-        person1.setFirstName("Stefan");
-        person1.setLastName("Cernescu");
-
-        Person person2 = new Person();
-        person2.setFirstName("Alex");
-        person2.setLastName("Ene");
+//        Person person1 = new Person();
+//        person1.setFirstName("Stefan");
+//        person1.setLastName("Cernescu");
+//
+//        Person person2 = new Person();
+//        person2.setFirstName("Alex");
+//        person2.setLastName("Ene");
 
         List<Person> people = new ArrayList<>();
-        people.add(person1);
-        people.add(person2);
+//        people.add(person1);
+//        people.add(person2);
         for (Person person : people) {
             if (person.getFirstName().equals("Stefan")) {
                 System.out.println(person.getLastName());
@@ -145,16 +147,25 @@ public class Main {
         }
 
         String[] arrayList = new String[8];
-        List<String> list = new LinkedList<>();
+//        List<String> list = new LinkedList<>();
         System.out.println("--------");
-//        Set<Integer> numbers = new HashSet<>();
-//        numbers.add(1);
-//        numbers.add(1);
-//        numbers.add(3);
-//        numbers.add(2);
-//        for(Integer number: numbers) {
-//            System.out.println(number);
-//        }
+        Set<Integer> numbers = new TreeSet<>();
+        numbers.add(1);
+        numbers.add(1);
+        numbers.add(3);
+        numbers.add(12);
+        numbers.add(2);
+        numbers.add(4);
+        numbers.add(2);
+        numbers.add(21);
+        numbers.add(23);
+        numbers.add(22);
+
+        for (Integer number : numbers) {
+            System.out.println(number);
+        }
+
+        System.out.println("--------");
 
         System.out.println("--------");
 //        Set<String> setNames = new HashSet<>(); nu pastreaza ordinea la inserare
@@ -168,9 +179,9 @@ public class Main {
             System.out.println(name + " " + name.hashCode());
         }
 
-        int  x = 11;
+        int x = 11;
         List<Integer> nubers = Arrays.asList(1, 2, 2, 4, 1, 7, 5, 12);
-        nubers.sort((x1,x2) -> x1-x2);
+        nubers.sort((x1, x2) -> x1 - x2);
         for (int i = 0; i < nubers.size(); i++) {
             for (int j = i + 1; j < nubers.size(); j++) {
                 if (nubers.get(i) + nubers.get(j) == x) {
@@ -187,5 +198,56 @@ public class Main {
                 foundNumbers.add(x - nubers.get(i));
             }
         }
+
+        LinkedList list = new LinkedList();
+        Node node = new Node();
+        node.setValue(1);
+        node.setNext(null);
+
+        Node node2 = new Node();
+        node2.setValue(2);
+        node2.setNext(null);
+
+        Node node3 = new Node();
+        node3.setValue(3);
+        node3.setNext(null);
+        list.add(node)
+                .add(node2)
+                .add(node3);
+        System.out.println("--------");
+        list.printList();
+
+        Set<String> set = new HashSet<>();
+        Map<String, String> map = new HashMap<>();
+        map.put("Cernescu", "Stefan");
+        map.put("Ene", "Alex");
+        map.put("Costiuc", "Sorin");
+
+        System.out.println(map.get("Ene"));
+        System.out.println("------------");
+        Map<String, Car> cars = new HashMap<>();
+        cars.put("SBC", new Car(Model.Volkswagen, 2008, "Blue"));
+        cars.put("ABC", new Car(Model.BMW, 2017, "Black"));
+        cars.put("AAA", new Car(Model.AUDI, 2010, "White"));
+        cars.put("AAA", new Car(Model.Volvo, 2010, "White"));
+
+        System.out.println(cars.get("SBC"));
+        System.out.println(cars.get("AAA"));
+
+        Map<Person, Car> newCars = new HashMap<>();
+        System.out.println("--------");
+        Person stefan = new Person("Cernesu", "Stefan");
+        Person alex = new Person("Ene", "Alex");
+        Person sorin = new Person("Costiuc", "Sorin");
+        newCars.put(new Person("Cernesu", "Stefan"), new Car(Model.Volkswagen, 2021, "Blue"));
+        newCars.put(alex, new Car(Model.AUDI, 2022, "Black"));
+        newCars.put(sorin, new Car(Model.Volvo, 2022, "Black"));
+
+        System.out.println(newCars.get(stefan));
+        System.out.println(newCars.get(new Person("Cernesu", "Mihai")));
+        System.out.println(stefan.equals(new Person("Cernesu", "Mihai")));
+        System.out.println(stefan.hashCode() + " " + new Person("Cernesu", "Mihai").hashCode());
+
+
     }
 }
